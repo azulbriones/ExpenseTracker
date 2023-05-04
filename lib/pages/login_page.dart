@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/auth_controller.dart';
-import 'package:flutter_project_app/reset_password.dart';
-import 'package:flutter_project_app/singup_page.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
+import 'package:flutter_project_app/pages/reset_password.dart';
+import 'package:flutter_project_app/pages/singup_page.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void login() {
+  Future login() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -27,12 +25,11 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
+
     AuthController.instance.login(
       emailController.text.trim(),
       passwordController.text.trim(),
     );
-
-    Navigator.pop(context);
   }
 
   @override
@@ -64,16 +61,16 @@ class _LoginPageState extends State<LoginPage> {
                       height: h * 0.3,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("img/loginimg.png"),
+                              image: AssetImage("assets/images/loginimg.png"),
                               fit: BoxFit.cover)),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      margin: EdgeInsets.only(left: 20, right: 20),
                       width: w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Bienvenido",
                             style: TextStyle(
                               fontSize: 56,
@@ -140,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                                 BoxShadow(
                                   blurRadius: 10,
                                   spreadRadius: 7,
-                                  offset: Offset(1, 1),
+                                  offset: const Offset(1, 1),
                                   color: Colors.grey.withOpacity(0.2),
                                 ),
                               ],
@@ -150,20 +147,20 @@ class _LoginPageState extends State<LoginPage> {
                               controller: passwordController,
                               decoration: InputDecoration(
                                 hintText: "Contraseña",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.password,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -174,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -188,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return ResetPassword();
+                                        return const ResetPassword();
                                       },
                                     ),
                                   );
@@ -204,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 70,
                     ),
                     GestureDetector(
@@ -216,13 +213,13 @@ class _LoginPageState extends State<LoginPage> {
                         height: h * 0.08,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          image: DecorationImage(
-                              image: AssetImage("img/loginbtn.png"),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/loginbtn.png"),
                               fit: BoxFit.cover),
                         ),
                         child: Center(
                           child: RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: "Iniciar sesión",
@@ -261,12 +258,12 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           TextSpan(
                             text: " Crear cuenta",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.blueAccent,
                               fontSize: 18,
                             ),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.to(() => SignUpPage()),
+                              ..onTap = () => Get.to(() => const SignUpPage()),
                           ),
                         ],
                       ),

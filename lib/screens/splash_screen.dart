@@ -8,17 +8,15 @@ class SplashScreen extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       height: double.maxFinite,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('img/splashbg.png'),
+          image: AssetImage('assets/images/splashbg.png'),
           fit: BoxFit.cover,
         ),
       ),
-      child: Center(
-        child: Container(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
+      child: const Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
       ),
     );

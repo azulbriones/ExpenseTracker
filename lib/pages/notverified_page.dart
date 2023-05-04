@@ -1,12 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/login_page.dart';
-import 'package:flutter_project_app/welcome_page.dart';
-
-import 'auth_controller.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
 
 class NotVerifiedPage extends StatelessWidget {
   NotVerifiedPage({super.key});
@@ -31,9 +26,9 @@ class NotVerifiedPage extends StatelessWidget {
                     Container(
                       width: w,
                       height: h * 0.3,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("img/loginimg.png"),
+                              image: AssetImage("assets/images/loginimg.png"),
                               fit: BoxFit.cover)),
                     ),
                     Container(
@@ -43,17 +38,17 @@ class NotVerifiedPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Text(
+                          const Text(
                             "Revisa tu correo",
                             style: TextStyle(
                               fontSize: 34,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
@@ -61,7 +56,7 @@ class NotVerifiedPage extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18, color: Colors.grey[500]),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
@@ -72,7 +67,7 @@ class NotVerifiedPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 100,
                     ),
                     GestureDetector(
@@ -84,13 +79,13 @@ class NotVerifiedPage extends StatelessWidget {
                         height: h * 0.08,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          image: DecorationImage(
-                              image: AssetImage("img/loginbtn.png"),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/loginbtn.png"),
                               fit: BoxFit.cover),
                         ),
                         child: Center(
                           child: RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: "Cerrar sesión",
@@ -116,7 +111,7 @@ class NotVerifiedPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     RichText(
@@ -133,7 +128,7 @@ class NotVerifiedPage extends StatelessWidget {
                                 AuthController.instance.verifyEmail();
                               },
                             text: " Volver a enviar",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.blueAccent,
                               fontSize: 18,
                             ),

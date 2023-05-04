@@ -1,10 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/auth_controller.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -42,7 +38,6 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         },
       );
-
       AuthController.instance.register(
         emailController.text.trim(),
         passwordController.text.trim(),
@@ -100,20 +95,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   Container(
                     width: w,
                     height: h * 0.3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("img/signup.png"),
+                          image: AssetImage("assets/images/signup.png"),
                           fit: BoxFit.cover),
                     ),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: h * 0.16,
+                          height: h * 0.15,
                         ),
-                        CircleAvatar(
+                        const CircleAvatar(
                           radius: 60,
                           backgroundColor: Colors.white70,
-                          backgroundImage: AssetImage("img/profile3.png"),
+                          backgroundImage:
+                              AssetImage("assets/images/profile3.png"),
                         )
                       ],
                     ),
@@ -124,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Hola!",
                           style: TextStyle(
                             fontSize: 56,
@@ -136,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           style:
                               TextStyle(fontSize: 20, color: Colors.grey[500]),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Container(
@@ -147,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               BoxShadow(
                                 blurRadius: 10,
                                 spreadRadius: 7,
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 color: Colors.grey.withOpacity(0.2),
                               ),
                             ],
@@ -156,20 +152,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: usernameController,
                             decoration: InputDecoration(
                               hintText: "Nombre de usuario",
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.person,
                                 color: Colors.deepPurple,
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.white,
                                   width: 1.0,
                                 ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.white,
                                   width: 1.0,
                                 ),
@@ -180,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -191,7 +187,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               BoxShadow(
                                 blurRadius: 10,
                                 spreadRadius: 7,
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 color: Colors.grey.withOpacity(0.2),
                               ),
                             ],
@@ -200,20 +196,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: emailController,
                             decoration: InputDecoration(
                                 hintText: "Correo electrónico",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.email,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -222,7 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     borderRadius: BorderRadius.circular(30))),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -233,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               BoxShadow(
                                 blurRadius: 10,
                                 spreadRadius: 7,
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 color: Colors.grey.withOpacity(0.2),
                               ),
                             ],
@@ -243,20 +239,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: passwordController,
                             decoration: InputDecoration(
                                 hintText: "Contraseña",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.password,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -265,7 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     borderRadius: BorderRadius.circular(30))),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -276,7 +272,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               BoxShadow(
                                 blurRadius: 10,
                                 spreadRadius: 7,
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 color: Colors.grey.withOpacity(0.2),
                               ),
                             ],
@@ -286,20 +282,20 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: confirmPasswordController,
                             decoration: InputDecoration(
                                 hintText: "Confirmar contraseña",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.password,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -312,7 +308,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -323,13 +319,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: h * 0.08,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        image: DecorationImage(
-                            image: AssetImage("img/loginbtn.png"),
+                        image: const DecorationImage(
+                            image: AssetImage("assets/images/loginbtn.png"),
                             fit: BoxFit.cover),
                       ),
                       child: Center(
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: "Crear cuenta",
@@ -355,7 +351,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   RichText(
@@ -370,7 +366,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => Get.back(),
                           text: " Iniciar sesión",
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.blueAccent,
                             fontSize: 18,
                           ),

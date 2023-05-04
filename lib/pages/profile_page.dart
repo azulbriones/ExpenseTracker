@@ -1,24 +1,20 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/auth_controller.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class WelcomePage extends StatefulWidget {
-  WelcomePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _ProfilePageState extends State<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
   String email = '';
   String username = '';
@@ -94,8 +90,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al actualizar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -103,7 +99,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -153,8 +149,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al actualizar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -162,7 +158,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -202,8 +198,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al eliminar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -211,7 +207,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -251,16 +247,16 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
-          "Error actualizar el nombre de usuario",
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
+          "Error al actualizar el nombre de usuario",
           style: TextStyle(
             color: Colors.white,
           ),
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -292,16 +288,16 @@ class _WelcomePageState extends State<WelcomePage> {
                         Container(
                           width: w,
                           height: h * 0.3,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage("img/signup.png"),
+                                image: AssetImage("assets/images/signup.png"),
                                 fit: BoxFit.cover),
                           ),
                         ),
                         SizedBox(
                           height: 200,
                         ),
-                        const Center(
+                        Center(
                           child: CircularProgressIndicator(),
                         ),
                       ],
@@ -312,9 +308,9 @@ class _WelcomePageState extends State<WelcomePage> {
                     Container(
                       width: w,
                       height: h * 0.3,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("img/signup.png"),
+                            image: AssetImage("assets/images/signup.png"),
                             fit: BoxFit.cover),
                       ),
                       child: Column(
@@ -347,7 +343,8 @@ class _WelcomePageState extends State<WelcomePage> {
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
                                                             Color>(
-                                                        Colors.lightBlueAccent),
+                                                        Color.fromARGB(
+                                                            255, 230, 37, 255)),
                                                 value: loadingProgress
                                                             .expectedTotalBytes !=
                                                         null
@@ -361,7 +358,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           },
                                         )
                                       : Image.asset(
-                                          'img/profile3.png',
+                                          'assets/images/profile3.png',
                                           width: 120,
                                           height: 120,
                                           fit: BoxFit.cover,
@@ -377,7 +374,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            content: Container(
+                                            content: SizedBox(
                                               height: 170,
                                               child: Column(
                                                 children: [
@@ -390,7 +387,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                       Icons.camera,
                                                       color: Colors.grey[500],
                                                     ),
-                                                    title: const Text('Cámara'),
+                                                    title: Text('Cámara'),
                                                   ),
                                                   ListTile(
                                                     onTap: () {
@@ -401,8 +398,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                       Icons.image,
                                                       color: Colors.grey[500],
                                                     ),
-                                                    title:
-                                                        const Text('Galería'),
+                                                    title: Text('Galería'),
                                                   ),
                                                   ListTile(
                                                     onTap: () {
@@ -413,7 +409,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                       Icons.delete,
                                                       color: Colors.redAccent,
                                                     ),
-                                                    title: const Text(
+                                                    title: Text(
                                                       'Eliminar',
                                                       style: TextStyle(
                                                         color: Colors.redAccent,
@@ -429,7 +425,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                   child: CircleAvatar(
                                     radius: 16,
                                     backgroundColor: Colors.grey[500],
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.edit,
                                       size: 22,
                                       color: Colors.white,
@@ -447,11 +443,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     Container(
                       width: w,
-                      margin: const EdgeInsets.only(left: 20),
+                      margin: EdgeInsets.only(left: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Bienvenido",
                             style: TextStyle(
                               fontSize: 36,
@@ -496,7 +492,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
-                                              title: const Text(
+                                              title: Text(
                                                   "Actualizar nombre de usuario"),
                                               content: SingleChildScrollView(
                                                 child: Column(
@@ -504,6 +500,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                     TextField(
                                                       controller:
                                                           usernameController,
+                                                      maxLength: 20,
                                                       keyboardType:
                                                           TextInputType.text,
                                                       decoration:
@@ -601,7 +598,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           image: DecorationImage(
-                              image: AssetImage("img/loginbtn.png"),
+                              image: AssetImage("assets/images/loginbtn.png"),
                               fit: BoxFit.cover),
                         ),
                         child: Center(
