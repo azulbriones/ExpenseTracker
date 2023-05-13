@@ -1,16 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_app/features/users/presentation/blocs/auth/auth_cubit.dart';
+import 'package:flutter_project_app/features/users/presentation/blocs/auth/auth_state.dart';
+import 'package:flutter_project_app/features/users/presentation/blocs/login/login_cubit.dart';
+import 'package:flutter_project_app/features/users/presentation/blocs/user/user_cubit.dart';
+import 'package:flutter_project_app/features/users/presentation/pages/log_in_page.dart';
+import 'package:flutter_project_app/features/users/presentation/pages/profile_page.dart';
+
+import 'injection_container.dart' as di;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project_app/features/transactions/data/datasources/transaction_firestore_datasource.dart';
-import 'package:flutter_project_app/features/transactions/data/repositories/transaction_repository_impl.dart';
-import 'package:flutter_project_app/features/transactions/domain/usecases/get_transactions.dart';
-import 'package:flutter_project_app/features/transactions/presentation/blocs/transaction_bloc.dart';
-import 'package:flutter_project_app/features/transactions/presentation/pages/main_page.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await di.init();
   runApp(MyApp());
 }
 
@@ -19,22 +22,37 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => TransactionsBloc(
-            TransactionRepositoryImpl(
-              TransactionFirestoreDataSourceImpl(
-                firestore: FirebaseFirestore.instance,
-              ),
-            ),
-          ),
+        BlocProvider<AuthCubit>(
+          create: (_) => di.sl<AuthCubit>()..appStarted(),
         ),
+        BlocProvider<LoginCubit>(
+          create: (_) => di.sl<LoginCubit>(),
+        ),
+        BlocProvider<UserCubit>(
+          create: (_) => di.sl<UserCubit>(),
+        ),
+        // BlocProvider<CommunicationCubit>(
+        //   create: (_) => di.sl<CommunicationCubit>(),
+        // )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MainPage(),
+        title: 'Expense Tracker',
+        debugShowCheckedModeBanner: false,
+        routes: {
+          "/": (context) {
+            return BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, authState) {
+                if (authState is Authenticated) {
+                  return ProfilePage(uid: authState.uid);
+                }
+                if (authState is UnAuthenticated) {
+                  return LogInPage();
+                }
+                return CircularProgressIndicator();
+              },
+            );
+          }
+        },
       ),
     );
   }
