@@ -1,37 +1,30 @@
-import 'package:flutter_project_app/features/users/data/datasources/firebase_remote_datasources.dart';
-import 'package:flutter_project_app/features/users/domain/entities/users_entity.dart';
-import 'package:flutter_project_app/features/users/domain/repositories/firebase_repository.dart';
+import 'package:flutter_project_app/features/users/data/datasources/user_firebase_data_source.dart';
+import 'package:flutter_project_app/features/users/domain/entities/user_entity.dart';
+import 'package:flutter_project_app/features/users/domain/repositories/user_firebase_repository.dart';
 
-class FirebaseRepositoryImpl implements FirebaseRepository {
-  final FirebaseRemoteDatasources firebaseRemoteDatasources;
+class UserFirebaseRepositoryImpl extends UserFirebaseRepository {
+  final UserFirebaseDataSource userFirebaseDataSource;
 
-  FirebaseRepositoryImpl({required this.firebaseRemoteDatasources});
+  UserFirebaseRepositoryImpl({required this.userFirebaseDataSource});
+  @override
+  Future<void> getCreateCurrentUser(UserEntity user) async =>
+      userFirebaseDataSource.getCreateCurrentUser(user);
+
   @override
   Future<String> getCurrentUid() async =>
-      await firebaseRemoteDatasources.getCurrentUid();
-  @override
-  Future<bool> isSignIn() async => await firebaseRemoteDatasources.isSignIn();
+      userFirebaseDataSource.getCurrentUId();
 
   @override
-  Future<void> signIn(String email, String password) async =>
-      await firebaseRemoteDatasources.signIn(email, password);
+  Future<bool> isSignIn() async => userFirebaseDataSource.isSignIn();
 
   @override
-  Future<void> signUp(String email, String password) async =>
-      await firebaseRemoteDatasources.signUp(email, password);
+  Future<void> signIn(UserEntity user) async =>
+      userFirebaseDataSource.signIn(user);
 
   @override
-  Future<void> getCreateCurrentUser(
-      String email, String username, String image) async {
-    return await firebaseRemoteDatasources.getCreateCurrentUser(
-        email, username, image);
-  }
+  Future<void> signOut() async => userFirebaseDataSource.signOut();
 
   @override
-  Stream<List<UsersEntity>> getUsers() {
-    return firebaseRemoteDatasources.getUsers();
-  }
-
-  @override
-  Future<void> signOut() => firebaseRemoteDatasources.signOut();
+  Future<void> signUp(UserEntity user) async =>
+      userFirebaseDataSource.signUp(user);
 }
